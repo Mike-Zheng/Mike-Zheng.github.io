@@ -4,6 +4,185 @@
   
     
     <entry>
+      <title>[作品筆記] Mutton Editor</title>
+      <link href="/posts/mutton01/"/>
+      <url>/posts/mutton01/</url>
+      
+        <content type="html"><![CDATA[<h1>Mutton Editor</h1><p><a href="https://mike-zheng.github.io/mutton-editor">https://mike-zheng.github.io/mutton-editor</a></p><blockquote><p>Free and Ad-free Graphics Editor for Developers</p></blockquote><p>Mutton-editor is completely free to use. It is just for fun.</p><p>If you have any suggestion, feel free to contact me.</p><p><img src="app.png" alt="app screen"></p><hr><p><a href="https://github.com/Mike-Zheng/mutton-editor" target="_blank" rel="noopener">https://github.com/Mike-Zheng/mutton-editor</a></p><blockquote><p>Issues welcome!!</p></blockquote><h2 id="Changelog">Changelog</h2><ul><li><p>v1.1.4 [2022/02/13]</p><ul><li>[fix] history state of props</li><li>[update] i18n ja</li></ul></li><li><p>v1.1.3 [2022/02/10]</p><ul><li>[add] frame rotation</li></ul></li><li><p>v1.1.2 [2022/02/05]</p><ul><li>[fix] layer order</li></ul></li><li><p>v1.1.1</p><ul><li>[add] Add i18n Ja</li><li>[fix] http resource from <a href="http://pngimg.com" target="_blank" rel="noopener">pngimg.com</a></li></ul></li><li><p>v1.1.0</p><ul><li>[add] resource from <a href="http://pngimg.com" target="_blank" rel="noopener">pngimg.com</a></li><li>[add] Add i18n</li><li>[add] About me</li><li>[update] App loader</li><li>[fix] Error sparking screen when changing order</li><li>[update] Not support page</li></ul></li><li><p>v1.0.4</p><ul><li>[fix] Resize handler shap</li><li>[update] Alert message when exceeding localStorage quota</li></ul></li><li><p>v1.0.3</p><ul><li>[add] Placeholders for images</li><li>[update] Enhance images with base64</li></ul></li><li><p>v1.0.2</p><ul><li>[fix] Focus in text item after dbclick event</li><li>[add] Show version</li></ul></li><li><p>v1.0.1 [2022/01/22]</p><ul><li>[fix] Images url with https</li><li>[fix] Export and Clipboard</li><li>[fix] Generate all images to base64</li></ul></li><li><p>v1.0.0 [2022/01/21]</p><ul><li>[add] Initial App</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[筆記] sequelize 自定義 snake_case table name</title>
+      <link href="/posts/exprseql/"/>
+      <url>/posts/exprseql/</url>
+      
+        <content type="html"><![CDATA[<h1>[筆記] sequelize 自定義 snake_case table name</h1><p>常用指令</p><ul><li>Create Database</li></ul><pre class=" language-bash"><code class="language-bash">npx sequelize-cli db:createnpx sequelize-cli db:drop</code></pre><ul><li>Migrate Table</li></ul><pre class=" language-bash"><code class="language-bash">npx sequelize-cli db:migratenpx sequelize-cli db:migrate:undo:all</code></pre><ul><li>Seed Data</li></ul><pre class=" language-bash"><code class="language-bash">npx sequelize-cli db:seed:allnpx sequelize-cli db:seed:undo:all</code></pre><h2 id="snake-case-underscore-case">snake_case (underscore case)</h2><p>以往設計資料庫欄位皆使用underscore_case，如果在sequelize使用</p><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> sequelize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sequelize</span><span class="token punctuation">(</span>  config<span class="token punctuation">.</span>database<span class="token punctuation">,</span>  config<span class="token punctuation">.</span>username<span class="token punctuation">,</span>  config<span class="token punctuation">.</span>password<span class="token punctuation">,</span>  <span class="token punctuation">{</span>    port<span class="token punctuation">:</span> config<span class="token punctuation">.</span>port<span class="token punctuation">,</span>    host<span class="token punctuation">:</span> config<span class="token punctuation">.</span>host<span class="token punctuation">,</span>    dialect<span class="token punctuation">:</span> config<span class="token punctuation">.</span>dialect<span class="token punctuation">,</span>    database<span class="token punctuation">:</span> config<span class="token punctuation">.</span>database<span class="token punctuation">,</span>    username<span class="token punctuation">:</span> config<span class="token punctuation">.</span>username<span class="token punctuation">,</span>    password<span class="token punctuation">:</span> config<span class="token punctuation">.</span>password<span class="token punctuation">,</span>    define<span class="token punctuation">:</span> <span class="token punctuation">{</span>      timestamps<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>      underscored<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>      createdAt<span class="token punctuation">:</span> <span class="token string">"created_at"</span><span class="token punctuation">,</span>      updatedAt<span class="token punctuation">:</span> <span class="token string">"updated_at"</span><span class="token punctuation">,</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class=" language-js"><code class="language-js"><span class="token string">"use strict"</span><span class="token punctuation">;</span>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">(</span>sequelize<span class="token punctuation">,</span> DataTypes<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>  <span class="token keyword">const</span> Category <span class="token operator">=</span> sequelize<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span>    <span class="token string">"Category"</span><span class="token punctuation">,</span>    <span class="token punctuation">{</span>      name<span class="token punctuation">:</span> DataTypes<span class="token punctuation">.</span>STRING<span class="token punctuation">,</span>      sub_name<span class="token punctuation">:</span> DataTypes<span class="token punctuation">.</span>STRING<span class="token punctuation">,</span>      index<span class="token punctuation">:</span> DataTypes<span class="token punctuation">.</span>NUMBER<span class="token punctuation">,</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token punctuation">{</span>      tableName<span class="token punctuation">:</span> <span class="token string">"category"</span><span class="token punctuation">,</span>      underscored<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>    <span class="token punctuation">}</span>  <span class="token punctuation">)</span><span class="token punctuation">;</span>  Category<span class="token punctuation">.</span>associate <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>models<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// Category.hasOne(models.Image, {</span>    <span class="token comment" spellcheck="true">//   foreignKey: 'image_id'</span>    <span class="token comment" spellcheck="true">// });</span>    Category<span class="token punctuation">.</span><span class="token function">belongsTo</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Image<span class="token punctuation">,</span> <span class="token punctuation">{</span>      foreignKey<span class="token punctuation">:</span> <span class="token punctuation">{</span>        name<span class="token punctuation">:</span> <span class="token string">"image_id"</span><span class="token punctuation">,</span>      <span class="token punctuation">}</span><span class="token punctuation">,</span>      <span class="token keyword">as</span><span class="token punctuation">:</span> <span class="token string">"image"</span><span class="token punctuation">,</span>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    Category<span class="token punctuation">.</span><span class="token function">hasMany</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Product<span class="token punctuation">,</span> <span class="token punctuation">{</span>      foreignKey<span class="token punctuation">:</span> <span class="token punctuation">{</span>        name<span class="token punctuation">:</span> <span class="token string">"category_id"</span><span class="token punctuation">,</span>      <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token keyword">return</span> Category<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> npm 筆記 </tag>
+            
+            <tag> node 筆記 </tag>
+            
+            <tag> express 筆記 </tag>
+            
+            <tag> sequelize 筆記 </tag>
+            
+            <tag> mysql 筆記 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[筆記]面對黑洞 如何快速刪除 node_modules</title>
+      <link href="/posts/e7go6aix/"/>
+      <url>/posts/e7go6aix/</url>
+      
+        <content type="html"><![CDATA[<h1>面對黑洞 如何快速刪除 node_modules 使用rimraf</h1><h2 id="rimraf">rimraf</h2><p>用package 將rm -rf命令包起來，這個package只有一個功能，就是實現類似linux rm -rf的指令</p><blockquote><p><a href="https://github.com/isaacs/rimraf" target="_blank" rel="noopener">https://github.com/isaacs/rimraf</a></p></blockquote><p>指令：</p><pre class=" language-bash"><code class="language-bash">npx rimraf node_modules</code></pre><p>比一般windows刪除的方式快了5倍吧。</p><p>雖然是一個簡單的東西，卻能增加不少效率。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 開發筆記 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> npm </tag>
+            
+            <tag> node </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[作品筆記] sketch-builder 雲端原型工具開發筆記(05) - Beta1.0 功能展示</title>
+      <link href="/posts/sbuild05/"/>
+      <url>/posts/sbuild05/</url>
+      
+        <content type="html"><![CDATA[<h2 id="sketch-builder-雲端原型工具-Beta1-0">sketch-builder 雲端原型工具 Beta1.0</h2><p>繼雲端原型工具開發筆記系列文</p><ul><li><a href="https://mike-zheng.github.io/sbuild01/">[作品筆記] sketch-builder 雲端原型工具開發筆記(01) - 前端應用軟體領域技術的探索</a></li><li><a href="https://mike-zheng.github.io/sbuild02/">[作品筆記] sketch-builder 雲端原型工具開發筆記(02) - sketch資料結構分析</a></li><li><a href="https://mike-zheng.github.io/sbuild03/">[作品筆記] sketch-builder 雲端原型工具開發筆記(03) - 開發的目標與介面設計</a></li><li><a href="https://mike-zheng.github.io/sbuild04/">[作品筆記] sketch-builder 雲端原型工具開發筆記(04) - 功能開發</a></li></ul><p>第五篇主要是簡單的beta1.0 成果展示</p><p>如果未來有空會陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><h2 id="功能縮圖">功能縮圖</h2><ol><li><p>screen 版面配置<br><img src="01.gif" alt="screen 版面配置 "></p></li><li><p>版面 grid 調整<br><img src="02.gif" alt="版面grid調整 "></p></li><li><p>編輯器縮放<br><img src="03.gif" alt="編輯器縮放 "></p></li><li><p>加入元件 移動 縮放<br><img src="04.gif" alt="加入元件 移動 縮放 "></p></li><li><p>多選縮放與拖曳<br><img src="05.gif" alt="多選縮放與拖曳 "></p></li><li><p>對齊線<br><img src="06.gif" alt="對齊線 "></p></li><li><p>undo redo<br><img src="07.gif" alt="undo redo "></p></li><li><p>元件對齊<br><img src="08.gif" alt="元件對齊 "></p></li><li><p>參考線<br><img src="09.gif" alt="參考線 "></p></li><li><p>context menu 與複製<br><img src="10.gif" alt=" context menu與複製 "></p></li><li><p>群組功能<br><img src="11.gif" alt=" 群組功能 "></p></li><li><p>圖層 order 功能<br><img src="12.gif" alt=" 圖層 "></p></li><li><p>十字線 與對齊線<br><img src="13.gif" alt=" 十字線 與對齊線 "></p></li><li><p>export<br><img src="14.gif" alt=" export "></p></li></ol><hr><h2 id="Future-works">Future works</h2><p>在beta版本中確實還有許多想做但卻還完成的部分，先保留著未來有空會慢慢補上</p><p><strong>Future works:</strong></p><ul><li><p>Preview</p></li><li><p>更多的元件</p><ul><li>text</li><li>image</li><li>矩形</li><li>圓形</li></ul></li><li><p>雲端元件</p></li><li><p>元件旋轉功能</p></li></ul><p>以上就是這系列的開發專案文</p><p>如果未來有空會陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><p>雲端原型工具開發筆記系列文</p><ul><li><a href="https://mike-zheng.github.io/sbuild01/">[作品筆記] sketch-builder 雲端原型工具開發筆記(01) - 前端應用軟體領域技術的探索</a></li><li><a href="https://mike-zheng.github.io/sbuild02/">[作品筆記] sketch-builder 雲端原型工具開發筆記(02) - sketch資料結構分析</a></li><li><a href="https://mike-zheng.github.io/sbuild03/">[作品筆記] sketch-builder 雲端原型工具開發筆記(03) - 開發的目標與介面設計</a></li><li><a href="https://mike-zheng.github.io/sbuild04/">[作品筆記] sketch-builder 雲端原型工具開發筆記(04) - 功能開發</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[作品筆記] sketch-builder 雲端原型工具開發筆記(04)  - 功能開發</title>
+      <link href="/posts/sbuild04/"/>
+      <url>/posts/sbuild04/</url>
+      
+        <content type="html"><![CDATA[<h2 id="功能開發">功能開發</h2><p>這次主題主要是開發原型設計工具，並參考sketch作為主要臨摹對象，在<a href="https://mike-zheng.github.io/sbuild03/">上篇 “(03)開發的目標與介面設計”</a> 已經提到相關UI的設計將會使用印度設計師的作品之後，這一篇要開始嚕一個原型工具出來。</p><p>先簡單列點需要開發的大項目，會再針對各項目進行簡單的探究。<br>更深入的邏輯有興趣的話當然可以pm我本人，不過核心的資料結構操作如果有機會，我是更想要能夠貢獻於目前任職的工作開發項目上面，因此只會列點提示使用的框架與開發的精神。</p><hr><h3 id="需開發的項目">需開發的項目</h3><ol><li><p>畫布核心</p><ol><li>移動 縮放</li><li>多元件選取<ol><li>選取移動</li><li>選取縮放</li><li>選取對齊</li></ol></li><li>對齊線<ol><li>移動對齊線</li><li>同儕對齊線</li><li>縮放對齊線</li></ol></li><li>尺規行為<ol><li>十字線</li><li>拖曳移動</li><li>畫布尺寸</li></ol></li><li>縮放功能<ol><li>各動作的scale運算</li></ol></li><li>context menu</li></ol></li><li><p>圖層</p><ol><li>拖曳移動</li><li>群組間各節點移動</li><li>rename行為</li><li>控制畫布核心行為</li><li>context menu</li></ol></li><li><p>元件</p><ol><li>svg元件</li><li>chart 元件</li></ol></li><li><p>export畫布</p></li><li><p>Keyboard Shortcuts</p></li></ol><h3 id="畫布功能">畫布功能</h3><p>畫布核心主要是fork 老牌的vue拖曳縮放元件: <a href="https://github.com/mauricius/vue-draggable-resizable" target="_blank" rel="noopener">vue-draggable-resizable</a></p><blockquote><p><a href="https://github.com/mauricius/vue-draggable-resizable" target="_blank" rel="noopener">https://github.com/mauricius/vue-draggable-resizable</a></p></blockquote><p>主要他能提供不錯的基底，當然fork下來改造還是花了不少心力，尤其是與其他事件整合上面，例如對齊線與縮放和尺規行為等等。</p><h4 id="1-群組化">1. 群組化</h4><p>主要是參考sketch的資料結構，於<a href="https://mike-zheng.github.io/sbuild02/">第二篇 “(2)sketch資料結構分析”</a> 效法內容裡面的儲存邏輯，不過這邊暫時沒有讓使用者能夠無限群組，對於樹形的遍歷來說，無限制深度的結構會影響蠻多效能的，基於想要提供多選移動及縮放，暫時將節點深度鎖在level 2。</p><h4 id="2-多選">2. 多選</h4><p>多選的核心為<a href="https://simonwep.github.io/selection/" target="_blank" rel="noopener">selectionjs</a></p><p>多選主要就是基於dom操作下的節點運算，每次選擇當下的滑鼠移動，都將進行一次區域的判定。<br>基於多方嘗試後，增加效能的作法就是仰賴dom操作的api evt.target的判定方式，這邊就點到為止。</p><p>多選的功能加入後，理應當支援的就是多選後的縮放，移動與對齊。</p><p>縮放與移動是類似的行為，多個同儕的dom節點不支援拖曳功能，你想要進行滑鼠的運作是不可能的。<br>當然這句話有例外:</p><blockquote><p>參考文件 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Multiple_items" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Multiple_items</a></p></blockquote><p>但…只有基於Gecko的Mozilla Firefox支援multi drag api，我們開發總不能讓大部分的瀏覽器都不能用吧…。</p><p>所以這條路當然是不通的。</p><p>換句話說，如果你想要一次移動多個節點，但你只能針對一個節點進行移動，這不就代表你要用一個來表示全部的節點嗎?<br>朝這個思路進行解決多選的行為就簡單了</p><ol><li>選取後建立虛擬節點壓在全部節點之上</li><li>動態計算其boundary</li><li>移動或縮放虛擬節點將一併運算各個選取的節點</li></ol><p>這樣就大致完成多選移動縮放的邏輯。</p><h4 id="3-對齊線">3. 對齊線</h4><p>簡單來說就是將吸附功能做進去，並顯示出來</p><pre class=" language-js"><code class="language-js"><span class="token keyword">for</span> <span class="token punctuation">(</span> comp <span class="token keyword">in</span> allComps<span class="token punctuation">)</span>    <span class="token keyword">if</span><span class="token punctuation">(</span> deltaXY <span class="token operator">&lt;=</span> tolerant <span class="token punctuation">)</span>        newXY <span class="token operator">=</span> compXY</code></pre><p>類似這樣的邏輯思路。<br>不過困難點會在於需要實現不同的對齊線吸附</p><ol><li>移動對齊線</li><li>同儕對齊線</li><li>縮放對齊線</li></ol><h4 id="4-尺規行為">4. 尺規行為</h4><p>這邊主要參考 react ruler 的vue版本</p><blockquote><p><a href="https://github.com/daybrush/ruler/tree/master/packages/react-ruler" target="_blank" rel="noopener">https://github.com/daybrush/ruler/tree/master/packages/react-ruler</a><br><a href="https://github.com/daybrush/ruler/tree/master/packages/vue-ruler" target="_blank" rel="noopener">https://github.com/daybrush/ruler/tree/master/packages/vue-ruler</a></p></blockquote><p>而十字線部分關於dom效能的運作 這一篇給了很好的思路</p><blockquote><p><a href="https://stackoverflow.com/questions/20060691/most-modern-method-of-getting-mouse-position-within-a-canvas-in-native-javascrip" target="_blank" rel="noopener">https://stackoverflow.com/questions/20060691/most-modern-method-of-getting-mouse-position-within-a-canvas-in-native-javascrip</a></p></blockquote><p>因此實作主要使用</p><pre class=" language-js"><code class="language-js">target<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>api進行Dimension的取得。</p><h4 id="5-縮放">5. 縮放</h4><p>縮放其實沒有什麼特別的，就是算數學。但在實作上 對於任何的dom dimension運算都要額外進行scale的運算，因此基於DRY原則(Don’t repeat yourself)下，如何將結構寫好才是需要注意的地方。<br>主畫面的縮放使用<code>transform: scale(${this.scale})</code></p><h4 id="6-context-menu">6. context menu</h4><p>context menu 我自己是覺得是web與應用程式的差異中微妙的界線，當web上面支援context menu的使用，才能說自己是應用程式(我自己的認為啦…)。</p><img src="01.png" alt="context menu" style="width:360px"><p>這邊是fork <code>v-contextmenu</code> 進行二次開發</p><blockquote><p><a href="https://github.com/heynext/v-contextmenu" target="_blank" rel="noopener">https://github.com/heynext/v-contextmenu</a><br>裡面的功能主要就是store 資料流的操作。</p></blockquote><h3 id="圖層">圖層</h3><p>fork <code>vue-tree-list</code> 與 <code>v-contextmenu</code> 進行二次開發</p><blockquote><p><a href="https://github.com/ParadeTo/vue-tree-list" target="_blank" rel="noopener">https://github.com/ParadeTo/vue-tree-list</a><br><a href="https://github.com/heynext/v-contextmenu" target="_blank" rel="noopener">https://github.com/heynext/v-contextmenu</a></p></blockquote><p>這邊的功能其實就是一個很完整的大功能了，目前完成的部分還有很多feature可以添加，礙於版本篇幅就先用相對簡單的處理完成第一版本。</p><p>此版本主要提供功能為</p><ol><li>拖曳移動</li><li>群組間各節點移動</li><li>rename行為</li><li>控制畫布核心行為</li><li>context menu</li></ol><h3 id="元件">元件</h3><p>元件的部分目前僅有提供</p><ol><li>svg元件</li><li>chart 元件</li></ol><p>chart 是apache基金會的echart</p><blockquote><p><a href="https://echarts.apache.org/examples/zh/editor.html" target="_blank" rel="noopener">https://echarts.apache.org/examples/zh/editor.html</a></p></blockquote><h3 id="export畫布">export畫布</h3><blockquote><p><a href="https://github.com/tsayen/dom-to-image" target="_blank" rel="noopener">https://github.com/tsayen/dom-to-image</a></p></blockquote><h3 id="Keyboard-Shortcuts">Keyboard Shortcuts</h3><p>提供</p><ul><li>ctrl+] 移到上一層</li><li>ctrl+shift+] 移到最上層</li><li>ctrl+[ 移到下一層</li><li>ctrl+shift+[ 移到最下層</li><li>ctrl+c 複製</li><li>ctrl+v 貼上</li><li>ctrl+g 組成群組</li><li>ctrl+shift+g 解散群組</li><li>ctrl+h 隱藏</li><li>ctrl+shift+h 顯示</li><li>delete 刪除</li><li>ctrl+z 復原</li><li>ctrl+y 重作</li><li>space+mouse pan 畫布移動</li></ul><h2 id="小結">小結</h2><p>整體的資料結構邏輯來說，都與畫布核心的連動關係有關，因此開發途中會遇到一職需要重新封裝的狀態，最後索性都丟給store去處理。<br>都給store去處理的好處就是各封裝元件只有需要專心處理自己的prop就好，其他部分就trigger一個action請store去重新運算。</p><p>簡單開發的筆記就寫到這邊，未來如果功能持續更新再來跟大家分享。</p><p>陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><p>雲端原型工具開發筆記系列文</p><ul><li><p><a href="https://mike-zheng.github.io/sbuild01/">[作品筆記] sketch-builder 雲端原型工具開發筆記(01) - 前端應用軟體領域技術的探索</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild02/">[作品筆記] sketch-builder 雲端原型工具開發筆記(02) - sketch資料結構分析</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild03/">[作品筆記] sketch-builder 雲端原型工具開發筆記(03) - 開發的目標與介面設計</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild05/">[作品筆記] sketch-builder 雲端原型工具開發筆記(05) - Beta1.0 功能展示</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[作品筆記] sketch-builder 雲端原型工具開發筆記(03)  - 開發的目標與介面設計</title>
+      <link href="/posts/sbuild03/"/>
+      <url>/posts/sbuild03/</url>
+      
+        <content type="html"><![CDATA[<h1>[03] sketch-builder 線上可視化編輯器開發筆記 - 開發的目標與介面設計</h1><p>陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><h2 id="開發流程">開發流程</h2><p>之前開發的side project主要都以先討論需求並請設計師協助設計為主。<br>在我認知的產品開發流程沒意外的話應該是:</p><p>就像<a href="https://medium.com/uxeastmeetswest/%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B%E6%98%AF%E4%BB%80%E9%BA%BC-pm%E8%88%87ux-designer%E7%9A%84%E5%8D%80%E5%88%A5-75bf69a46016" target="_blank" rel="noopener">軟體開發流程是什麼？PM與UX Designer的區別？</a></p><p><img src="designprocess_02.jpg" alt="開發流程"></p><ol><li>先去釐清使用者需要什麼，並理解相關的操作流程，</li><li>塑模並討論，請PM或是設計人員設計粗稿，用以討論整體UX與workflow</li><li>驗證可行性，並將發散的模型趨向可實作的方向。</li><li>設計師將討論結果設計UI，並一致化整體風格</li><li>複習spec，RD將討論的結果實作並實現</li></ol><hr><h2 id="Interface-介面">Interface 介面</h2><p>這次的開發目標較為明確，主要是練技術為主，會從後期(5)實作開始。</p><p>設計部分預計參考dribbble 這位印度大師的作品</p><blockquote><p><a href="https://dribbble.com/shots/15754710-Mobile-Campaign-Editor" target="_blank" rel="noopener">https://dribbble.com/shots/15754710-Mobile-Campaign-Editor</a></p></blockquote><p><img src="01.png" alt="Mobile Campaign Editor"></p><p>雖然此作品介面主要操作為影片的編輯器，但大部分功能或是版面類似於sketch規劃，<br>會從這個設計當作主要風格去延伸，並將sketch功能陸續實作。</p><h2 id="logo設計">logo設計</h2><p>logo一直一來都是相對頭疼的部分，這次最一開始是將羊設定為logo的初始意象。</p><p><strong>最初代的logo</strong></p><img src="logo00.png" style="width:120px"><p><strong>經過幾次改版之後</strong></p><img src="logo01.jpg" style="width:240px"> <img src="logo02.jpg" style="width:360px"><p><strong>加入雲端概念重新設計</strong></p><img src="logo03.png" style="width:200px"><p><strong>加強雲端羊的意象</strong></p><img src="logo04.png" style="width:200px"><p><strong>最後把雨變成雲端羊的4隻腳</strong><br>最終定案:</p><img src="logo05.png" style="width:120px"><p>設計logo部分至少花了我整整一星期下班後的開發時間，但由於logo是專案的識別靈魂，且多次麻煩友人設計師協助調整設計。</p><p>請大家一定要好好訂閱 @errzi_oyster</p><blockquote><p><a href="https://www.instagram.com/err.zi/" target="_blank" rel="noopener">https://www.instagram.com/err.zi/</a></p></blockquote><p align="center"><iframe src="https://giphy.com/embed/C6csmgPsnbeACSXsXS" width="200" height="200" frameborder="0" class="giphy-embed" allowfullscreen></iframe></p><p><a href="https://giphy.com/gifs/transparent-oyster-errzi-C6csmgPsnbeACSXsXS" target="_blank" rel="noopener">via GIPHY</a></p><p></p><hr><h2 id="Icons">Icons</h2><p>icon 使用google material design icons</p><blockquote><p><a href="http://google.github.io/material-design-icons/" target="_blank" rel="noopener">http://google.github.io/material-design-icons/</a></p></blockquote><p><img src="icons-library.png" alt="material-design-icons"></p><p>這套icon已經是非常經典的項目了，想必曾經經歷angularJS時代的開發者們，這款肯定比fontawesome更上手。</p><h2 id="其他靜態資源">其他靜態資源</h2><p><strong>scada svg</strong></p><p><a href="https://www.hmicons.com/product/free-pack/" target="_blank" rel="noopener">https://www.hmicons.com/product/free-pack/</a></p><p><strong>補充的 svg</strong></p><p><a href="https://www.flaticon.com/authors/special/lineal-color" target="_blank" rel="noopener">https://www.flaticon.com/authors/special/lineal-color</a><br><a href="https://www.flaticon.com/packs/industry-72" target="_blank" rel="noopener">https://www.flaticon.com/packs/industry-72</a><br><a href="https://www.flaticon.com/packs/machinery-28" target="_blank" rel="noopener">https://www.flaticon.com/packs/machinery-28</a></p><p><strong>Not support mobile</strong></p><p><a href="https://www.flaticon.com/free-icon/rejected_4337015?related_id=4337015&amp;origin=pack" target="_blank" rel="noopener">https://www.flaticon.com/free-icon/rejected_4337015?related_id=4337015&amp;origin=pack</a></p><h2 id="Asset-icon-生成">Asset icon 生成</h2><blockquote><p><a href="https://github.com/jcalixte/vue-pwa-asset-generator" target="_blank" rel="noopener">https://github.com/jcalixte/vue-pwa-asset-generator</a></p></blockquote><p>vue-pwa-asset-generator npm package<br>非常方便的靜態icon生成器<br>使用指令生成各大小合適的icon</p><pre><code>npx vue-pwa-asset-generator -a ./design/logo.png -o ./public/img/icons</code></pre><hr><p>下一篇就會開始往開發邁進</p><p>陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><p>雲端原型工具開發筆記系列文</p><ul><li><p><a href="https://mike-zheng.github.io/sbuild01/">[作品筆記] sketch-builder 雲端原型工具開發筆記(01) - 前端應用軟體領域技術的探索</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild02/">[作品筆記] sketch-builder 雲端原型工具開發筆記(02) - sketch資料結構分析</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild04/">[作品筆記] sketch-builder 雲端原型工具開發筆記(04) - 功能開發</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild05/">[作品筆記] sketch-builder 雲端原型工具開發筆記(05) - Beta1.0 功能展示</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[作品筆記] sketch-builder 雲端原型工具開發筆記(02)  - sketch資料結構分析</title>
+      <link href="/posts/sbuild02/"/>
+      <url>/posts/sbuild02/</url>
+      
+        <content type="html"><![CDATA[<h1>sketch資料檔案分析</h1><p>近年來一些side project上非常頻繁使用mac上才有的 sketch的編輯器，漸漸變成自己塑模prototype的主要工具。優點有很多，一是相關套件很多方便討論，二是容易上手。相信不少設計為主的相關從業人員使用sketch上都有不錯的回饋。基本上使用sketch大概是現今UX主流的工具之一。</p><p>也因為從去年中開始，在工作專案上遇到不少問題，不容易操作的圖像與工控對於新技術較為保守，也不容易與設計人員有共鳴的討論。因此想在空閒的假日時間，開發一個類似 sketch的雲端原型工具 sketch-builder。</p><p>所以接下來會有一系列的開發文，主要還是技術傳道與資料結構的想法記錄為主。<br>也一併將這幾年的所學內化，開發成一個找到好方向就能推出的專案產品。</p><p>之後會陸續紀錄在<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><h2 id="sketch-資料解析">sketch 資料解析</h2><p>進行之前我們來解析一下sketch的資料結構，<br>並做以之後開發的一個參考。</p><h3 id="1-建立-sketch建立">1. 建立 sketch建立</h3><p>簡單完成一個這樣子有不同種類的物件與群組的sketch檔案<br>先開啟sketch建立一個些結構如</p><p><img src="01.png" alt=".sketch"></p><ol><li>文字</li><li>圖片</li><li>圖形 (圓形 三角形 線 矩形)</li><li>群組 與群組中群組</li></ol><hr><h3 id="2-解析-sketch檔案">2. 解析.sketch檔案</h3><blockquote><p>官方文件: <a href="https://developer.sketch.com/file-format/" target="_blank" rel="noopener">https://developer.sketch.com/file-format/</a></p></blockquote><p>拆開.sketch檔案後可以得到檔案如下</p><p><img src="02.png" alt=".sketch"></p><ol><li>📁 images</li><li>📁 pages</li><li>📁 previews</li><li>🗄️ document.json</li><li>🗄️ meta.json</li><li>🗄️ user.json</li></ol><hr><h3 id="3-images-previews-pages-資料夾">3.images &amp; previews &amp; pages 資料夾</h3><p>images 與previews裡面只有圖片</p><p>分別是</p><ol><li><p>📁 images -&gt; 專案用到的額外圖片資源檔案</p><ul><li>例如我加入一張圖片進去</li></ul></li><li><p>📁 previews 裡面是我的page的縮圖</p></li><li><p>📁 pages 裡面有其他檔名為UUID的json檔案</p><ul><li>有幾個pages就會有幾個檔案他會被記錄在<code>user.json</code>,<code>meta.json</code></li></ul></li></ol><p>將檔案打開後</p><hr><h3 id="4-user-json">4. user.json</h3><p><code>user.json</code></p><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>    <span class="token property">"document"</span><span class="token operator">:</span>    <span class="token punctuation">{</span>        <span class="token property">"pageListHeight"</span><span class="token operator">:</span> <span class="token number">85</span><span class="token punctuation">,</span>        <span class="token property">"pageListCollapsed"</span><span class="token operator">:</span> <span class="token number">0</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"與pages資料夾內的檔案同名的ID"</span><span class="token operator">:</span>    <span class="token punctuation">{</span>        <span class="token property">"scrollOrigin"</span><span class="token operator">:</span> <span class="token string">"{62, 54}"</span><span class="token punctuation">,</span>        <span class="token property">"zoomValue"</span><span class="token operator">:</span> <span class="token number">1</span>    <span class="token punctuation">}</span>    ...<span class="token punctuation">}</span></code></pre><p>基本上打開user裡面紀錄的都是跟使用者針對軟體的設定有關係，<br>其中一些設定跟docment.jons設定又有點像，<br>但主要都是針對用戶操作卻與專案無關的部分。</p><hr><h3 id="5-document-json">5. document.json</h3><p>而document是這樣紀錄</p><p><code>document.json</code></p><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>    <span class="token property">"_class"</span><span class="token operator">:</span> <span class="token string">"document"</span><span class="token punctuation">,</span>    <span class="token property">"do_objectID"</span><span class="token operator">:</span> <span class="token string">"...."</span><span class="token punctuation">,</span>    <span class="token property">"colorSpace"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>    <span class="token property">"currentPageIndex"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>    <span class="token property">"assets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"foreignLayerStyles"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token property">"foreignSymbols"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token property">"foreignTextStyles"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token property">"layerStyles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"layerSymbols"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"layerTextStyles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>...<span class="token punctuation">]</span><span class="token punctuation">,</span>    ....<span class="token punctuation">}</span></code></pre><p>document 主要是紀錄整個專案裡面用到的全域紀錄區，<br>例如symbols，sketch常用的module組件，<br>或是pages列表，就像是整個workspace的紀錄區。</p><hr><h3 id="6-meta-json">6. meta.json</h3><p><code>meta.json</code></p><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>        <span class="token property">"commit"</span><span class="token operator">:</span> <span class="token string">"......"</span><span class="token punctuation">,</span>    <span class="token property">"pagesAndArtboards"</span><span class="token operator">:</span>    <span class="token punctuation">{</span>        <span class="token property">"....UUID"</span><span class="token operator">:</span>        <span class="token punctuation">{</span>            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Page 1"</span><span class="token punctuation">,</span>            <span class="token property">"artboards"</span><span class="token operator">:</span>            <span class="token punctuation">{</span>                <span class="token property">"....UUID"</span><span class="token operator">:</span>                <span class="token punctuation">{</span>                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Artboard"</span>                <span class="token punctuation">}</span>            <span class="token punctuation">}</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">121</span><span class="token punctuation">,</span>    <span class="token property">"fonts"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"PingFangTC-Semibold"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token property">"compatibilityVersion"</span><span class="token operator">:</span> <span class="token number">99</span><span class="token punctuation">,</span>    <span class="token property">"app"</span><span class="token operator">:</span> <span class="token string">"com.bohemiancoding.sketch3"</span><span class="token punctuation">,</span>    <span class="token property">"autosaved"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>    <span class="token property">"variant"</span><span class="token operator">:</span> <span class="token string">"NONAPPSTORE"</span><span class="token punctuation">,</span>    <span class="token property">"created"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"saveHistory"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"...."</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token property">"appVersion"</span><span class="token operator">:</span> <span class="token string">"...."</span><span class="token punctuation">,</span>    <span class="token property">"build"</span><span class="token operator">:</span> ...<span class="token punctuation">}</span></code></pre><p><code>meta.json</code> 就比較像是版本資訊，因為整體的sketch功能因為版本不停地推進，因此紀錄於此。<br>不過比較意外的是這邊紀錄了<code>pagesAndArtboards</code>，</p><p>並且它的結構是<code>KEY VALUE</code>並不是我習慣使用的<code>Array Object</code></p><pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>  page<span class="token punctuation">:</span> <span class="token punctuation">[</span>    <span class="token punctuation">{</span>      <span class="token string">'type'</span><span class="token punctuation">:</span><span class="token string">'artboards'</span><span class="token punctuation">,</span>      <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Artboard'</span>    <span class="token punctuation">}</span><span class="token operator">...</span>  <span class="token punctuation">]</span><span class="token punctuation">}</span></code></pre><hr><h3 id="7-pages">7. pages</h3><p>主程式經由<code>document.json</code>, <code>meta.json</code>, <code>user.json</code> 將資料夾pages裡面命名為UUID的json檔案讀進來。</p><p>裡面就會是我主要的重點了，其Json file儲存整個sketch核心的畫布資料。</p><p>與檔案同名的UUID.json</p><p>第一層 page Object 結構</p><pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>    <span class="token string">"_class"</span><span class="token punctuation">:</span> <span class="token string">"page"</span><span class="token punctuation">,</span>    <span class="token string">"do_objectID"</span><span class="token punctuation">:</span> <span class="token string">"與檔案同名UUID"</span> <span class="token punctuation">,</span>    <span class="token operator">...</span>  <span class="token comment" spellcheck="true">// 一堆繁瑣項目</span>    <span class="token string">"isLocked"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>       <span class="token string">"isVisible"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>    <span class="token string">"rotation"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Page 1"</span><span class="token punctuation">,</span>    <span class="token operator">...</span>  <span class="token comment" spellcheck="true">// 一堆繁瑣項目</span>    <span class="token string">"frame"</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//整體框 的xywh</span>    <span class="token punctuation">{</span>        <span class="token string">"_class"</span><span class="token punctuation">:</span> <span class="token string">"rect"</span><span class="token punctuation">,</span>        <span class="token string">"constrainProportions"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>        <span class="token string">"height"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>        <span class="token string">"width"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>        <span class="token string">"x"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>        <span class="token string">"y"</span><span class="token punctuation">:</span> <span class="token number">0</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token operator">...</span>    <span class="token string">"style"</span><span class="token punctuation">:</span>   <span class="token comment" spellcheck="true">//page 的 style 設定項</span>    <span class="token punctuation">{</span>        <span class="token string">"_class"</span><span class="token punctuation">:</span> <span class="token string">"style"</span><span class="token punctuation">,</span>        <span class="token string">"do_objectID"</span><span class="token punctuation">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span>        <span class="token string">"endMarkerType"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>        <span class="token string">"miterLimit"</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>        <span class="token string">"startMarkerType"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>        <span class="token string">"windingRule"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>        <span class="token string">"blur"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        <span class="token string">"borderOptions"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        <span class="token string">"borders"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        <span class="token string">"colorControls"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        <span class="token string">"contextSettings"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        <span class="token string">"fills"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        <span class="token string">"innerShadows"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        <span class="token string">"shadows"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>     <span class="token operator">...</span>  <span class="token comment" spellcheck="true">// 一堆繁瑣項目</span>    <span class="token string">"layers"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token string">"horizontalRulerData"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 尺規對齊線的操作存檔</span>    <span class="token string">"verticalRulerData"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token comment" spellcheck="true">// 尺規對齊線的操作存檔</span><span class="token punctuation">}</span></code></pre><p>上方節錄了root Object page的資料結構，<br>其中layers 裡面的樹形結構龐大，我就暫不收錄。</p><p>而layer 節點內的表示法為<br>分為兩種 folder型態的與 item型態的。</p><p>folder 型態:</p><ul><li><p>目前觀察到的是_class 為</p><ul><li>artboard</li><li>group</li></ul></li><li><p>並且擁有</p><ul><li>“layers”: []</li></ul></li></ul><pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>  <span class="token string">"_class"</span><span class="token punctuation">:</span> <span class="token string">"group"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// artboard</span>  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"group..."</span><span class="token punctuation">,</span>  <span class="token string">"layers"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span></code></pre><p>item型態節點</p><ul><li>目前觀察到的是_class 為<ul><li>rectangle</li><li>shapePath</li><li>triangle</li><li>text</li><li>bitmap</li></ul></li></ul><pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>  <span class="token string">"_class"</span><span class="token punctuation">:</span> <span class="token string">"rectangle"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// rectangle shapePath triangle text bitmap</span>  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"rectangle"</span><span class="token punctuation">}</span></code></pre><hr><h3 id="8-小結">8. 小結</h3><p>經過簡單的拆包觀察，對於sketch的檔案結構有更深入的了解，<br>其中也觀察到一些有趣的地方</p><ol><li>rotation 沒有寫進去frame裡面</li><li>對於artboard來說自己也是rect</li><li>style只記錄跟風格有關的東西</li><li>裡面還記錄了一堆感覺操作app也不知道會在哪的東西</li><li>group屬性裡面的位置邏輯很特別，子節點的xywh是相對於父group的</li></ol><p>陸續更新:<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><p>雲端原型工具開發筆記系列文</p><ul><li><p><a href="https://mike-zheng.github.io/sbuild01/">[作品筆記] sketch-builder 雲端原型工具開發筆記(01) - 前端應用軟體領域技術的探索</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild03/">[作品筆記] sketch-builder 雲端原型工具開發筆記(03) - 開發的目標與介面設計</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild04/">[作品筆記] sketch-builder 雲端原型工具開發筆記(04) - 功能開發</a></p></li><li><p><a href="https://mike-zheng.github.io/sbuild05/">[作品筆記] sketch-builder 雲端原型工具開發筆記(05) - Beta1.0 功能展示</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[作品]五十音の学習 五十音練習小工具</title>
       <link href="/posts/gojuonap/"/>
       <url>/posts/gojuonap/</url>
@@ -20,9 +199,34 @@
       
         <tags>
             
-            <tag> vue 筆記 </tag>
+            <tag> vue </tag>
             
-            <tag> pwa 筆記 </tag>
+            <tag> pwa </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[作品筆記] sketch-builder 雲端原型工具開發筆記(01)  - 前端應用軟體領域技術的探索</title>
+      <link href="/posts/sbuild01/"/>
+      <url>/posts/sbuild01/</url>
+      
+        <content type="html"><![CDATA[<h2 id="為什麼要開發-sketch-builder-雲端原型工具">為什麼要開發 sketch-builder 雲端原型工具?</h2><p>2000年以前的web，大致上只有分成java工程師與網頁視覺設計師兩種職務(…不負責任評論)，之後，<br>前端技術經歷幾次時代更迭後，百家爭鳴的前處理技術直到angular的出現打破現況，<br>加上react vue的出現才造就大家目前所熟知的現況。</p><p><strong>多數的服務都提供web版本，javascript正在統治世界。</strong></p><p>這並不是戰語言，是因為隨著智慧型手機，平板等等的普及與PC效能與瀏覽器的日新月異，用戶開始不喜歡安裝任何的應用程式。</p><p>現在，大部分你想的到要做的任何事情，就是需要一些小工具來協助的，上網搜尋後面加個term <code>&quot; online&quot;</code>，大部分都能找到別人開發免費或付費讓你使用的線上版工具。</p><p>例如</p><ul><li><p><em>你想要下載youtube影片</em></p><p>search🔎 <code>&quot;youtube video downloader online&quot;</code></p></li><li><p><em>你想圖片轉檔</em></p><p>search🔎 <code>&quot;png to jpg online&quot;</code></p></li><li><p><em>你想要PDF編輯或壓縮</em></p><p>search🔎 <code>&quot;pdf edit compress online&quot;</code></p></li></ul><p>那些處理來的檔案也好，或是完成的項目也好，甚至可能比你自己去找到軟體安裝操作後做的還要更好。<br>例如下載畫質更好，壓縮更棒，圖片更沒有肉眼上的失真。</p><p>再多舉幾個例子好了:</p><ul><li><em>排版文件，數值計算，統計報表</em> 🌐 <a href="https://www.google.com.tw/intl/zh-TW/docs/about/" target="_blank" rel="noopener">google doc</a></li><li><em>文件存放整理</em> 🌐 <a href="https://www.dropbox.com/home" target="_blank" rel="noopener">dropbox</a></li><li><em>線上筆記整理</em> 🌐 <a href="https://evernote.com/intl/zh-tw" target="_blank" rel="noopener">evernote</a></li></ul><p>以上的例子因為加入<code>協同技術</code>與<code>雲端</code>，讓web上的應用程式服務比安裝後的應用程式更具備優勢。</p><p>回到主題</p><p><strong>Q : 為什麼要開發 sketch-builder 雲端原型工具?</strong></p><p><strong>Because it’s there.</strong></p><ul><li>一是 對於自身的挑戰。作為一個前端網頁應用程式開發人員，內化自我學習的最好方法就是實踐。</li><li>二是 因為這個主題十分迷人，能夠將複雜的編輯器應用開發，想必也是一個自我肯定。</li></ul><p>前面講了這麼多前端世界的現況，開發雲端原型工具也需要花費大量時間，不過也正好這一年來疫情的爆發，假日總是關在家中，趁個機會實踐想法。</p><hr><h2 id="所見及所得-WYSIWYG-系統的-設計與架構">所見及所得(WYSIWYG)系統的 設計與架構</h2><p>這簡述這個主題之前，我們先來看看對岸的大佬們怎麼說:</p><ul><li><p>「可视化搭建系统」——从设计到架构，探索前端领域技术和业务价值<br><a href="https://zhuanlan.zhihu.com/p/164558106" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/164558106</a></p></li><li><p>阿里前端委员会主席圆心：未来前端的机会在哪里？<br><a href="https://zhuanlan.zhihu.com/p/72325890" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/72325890</a></p></li><li><p>20+个可视化搭建工具，一次玩个够<br><a href="https://blog.csdn.net/liuyan19891230/article/details/110412579" target="_blank" rel="noopener">https://blog.csdn.net/liuyan19891230/article/details/110412579</a></p></li><li><p>页面可视化搭建工具技术要点<br><a href="https://blog.csdn.net/VhWfR2u02Q/article/details/89838105" target="_blank" rel="noopener">https://blog.csdn.net/VhWfR2u02Q/article/details/89838105</a></p></li><li><p>页面可视化搭建工具前生今世<br><a href="https://zhuanlan.zhihu.com/p/37171897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37171897</a></p></li></ul><p>在這些前輩們的文章中的概念，基本上能夠將code好好的抽離，關注點分離並元件化，想要開發一個線上編輯器不是問題。</p><p>今日的前端世界，多虧前仆後繼的巨人們，我們這些後輩才有肩膀能夠墊腳。</p><p>現今主流的三大前端框架 Vue React Angular 中，<br>相信任何一套工具能夠辦到這次開發的需求，<br>這次挑選較為擅長的 <strong>vue</strong> 作為實踐的工具。</p><hr><h2 id="功能聚焦">功能聚焦</h2><ul><li>原型參考 <a href="https://www.sketch.com/" target="_blank" rel="noopener"><code>sketch</code></a> , <a href="https://icons8.com/lunacy" target="_blank" rel="noopener"><code>Lunacy</code></a></li><li>應用參考 <code>阿里云IoT Studio</code><br><a href="https://studio.iot.aliyun.com/" target="_blank" rel="noopener">https://studio.iot.aliyun.com/</a></li></ul><p>雲端原型工具主要的參考操作模式為<code>sketch</code>與windows版本的sketch: <code>Lunacy</code>，<br>也因此將服務命名為<code>sketch-builder</code>。<br><code>阿里云IoT Studio</code> 則是另一款我參考的應用，其中的數據綁定等等，<br>對我都是不錯的臨摹參考。</p><p>開發中的網址<br><strong>sketch-builder 雲端原型工具:</strong><br><a href="https://mike-zheng.github.io/sketch-builder">https://mike-zheng.github.io/sketch-builder</a></p><hr><p>雲端原型工具開發筆記系列文</p><ul><li><a href="https://mike-zheng.github.io/sbuild02/">[作品筆記] sketch-builder 雲端原型工具開發筆記(02) - sketch資料結構分析</a></li><li><a href="https://mike-zheng.github.io/sbuild03/">[作品筆記] sketch-builder 雲端原型工具開發筆記(03) - 開發的目標與介面設計</a></li><li><a href="https://mike-zheng.github.io/sbuild04/">[作品筆記] sketch-builder 雲端原型工具開發筆記(04) - 功能開發</a></li><li><a href="https://mike-zheng.github.io/sbuild05/">[作品筆記] sketch-builder 雲端原型工具開發筆記(05) - Beta1.0 功能展示</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 作品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 專案 </tag>
             
         </tags>
       
@@ -47,7 +251,7 @@
       
         <tags>
             
-            <tag> vue 筆記 </tag>
+            <tag> vue </tag>
             
         </tags>
       
@@ -72,9 +276,9 @@
       
         <tags>
             
-            <tag> vue 筆記 </tag>
+            <tag> vue </tag>
             
-            <tag> react 筆記 </tag>
+            <tag> react </tag>
             
             <tag> 小工具 </tag>
             
@@ -120,7 +324,7 @@
       
         <tags>
             
-            <tag> Android 筆記 </tag>
+            <tag> Android </tag>
             
             <tag> root刷機 </tag>
             
@@ -168,9 +372,9 @@
       
         <tags>
             
-            <tag> vue 筆記 </tag>
+            <tag> vue </tag>
             
-            <tag> pwa 筆記 </tag>
+            <tag> pwa </tag>
             
         </tags>
       
@@ -195,7 +399,7 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
         </tags>
       
@@ -220,7 +424,7 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
         </tags>
       
@@ -245,9 +449,9 @@
       
         <tags>
             
-            <tag> shell script 筆記 </tag>
+            <tag> shell script </tag>
             
-            <tag> apple script 筆記 </tag>
+            <tag> apple script </tag>
             
         </tags>
       
@@ -272,9 +476,9 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
-            <tag> electron 筆記 </tag>
+            <tag> electron </tag>
             
         </tags>
       
@@ -299,9 +503,9 @@
       
         <tags>
             
-            <tag> Angularjs 筆記 </tag>
-            
             <tag> google API </tag>
+            
+            <tag> Angularjs </tag>
             
         </tags>
       
@@ -326,7 +530,7 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
             <tag> google API </tag>
             
@@ -380,7 +584,7 @@
             
             <tag> 課程筆記 </tag>
             
-            <tag> openCV 筆記 </tag>
+            <tag> openCV </tag>
             
         </tags>
       
@@ -426,7 +630,7 @@
             
             <tag> 課程筆記 </tag>
             
-            <tag> DataMining 筆記 </tag>
+            <tag> DataMining </tag>
             
         </tags>
       
@@ -451,7 +655,7 @@
       
         <tags>
             
-            <tag> Angularjs 筆記 </tag>
+            <tag> Angularjs </tag>
             
         </tags>
       
@@ -476,7 +680,7 @@
       
         <tags>
             
-            <tag> SCSS 筆記 </tag>
+            <tag> SCSS </tag>
             
         </tags>
       
@@ -501,7 +705,7 @@
       
         <tags>
             
-            <tag> SCSS 筆記 </tag>
+            <tag> SCSS </tag>
             
         </tags>
       
@@ -564,7 +768,7 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
         </tags>
       
@@ -589,7 +793,7 @@
       
         <tags>
             
-            <tag> jQuery 筆記 </tag>
+            <tag> jQuery </tag>
             
         </tags>
       
@@ -614,7 +818,7 @@
       
         <tags>
             
-            <tag> Gulpjs 筆記 </tag>
+            <tag> gulp </tag>
             
         </tags>
       

@@ -1507,7 +1507,7 @@ function fuzzy_match(text, search) {
   });
 
 })(jQuery);function backToTop() {
-    var buttonHTML = $("<a href=\"#top\" class=\"back-top\" id=\"back-top\">" + "<span>Top</span><i class='fa fa-chevron-circle-up' aria-hidden='true'></i></a>");
+    var buttonHTML = $("<a href=\"#top\" class=\"back-top\" id=\"back-top\">" + "<span></span><i class='fa fa-chevron-circle-up' aria-hidden='true'></i></a>");
     buttonHTML.appendTo($("body"));
     var buttonToTop = $("#back-top");
     buttonToTop.hide();
