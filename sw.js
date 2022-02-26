@@ -24,15 +24,15 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/posts/266a1e40/');
+  precacheUrls.push('/posts/s11board/');
 
   precacheUrls.push('/posts/63de1791/');
 
   precacheUrls.push('/posts/mutton01/');
 
-  precacheUrls.push('/posts/sbuild05/');
-
   precacheUrls.push('/posts/exprseql/');
+
+  precacheUrls.push('/posts/e7go6aix/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":5};
